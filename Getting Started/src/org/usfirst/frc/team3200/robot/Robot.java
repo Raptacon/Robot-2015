@@ -1,12 +1,9 @@
-
 package org.usfirst.frc.team3200.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import org.usfirst.frc.team3200.robot.commands.*;
-import org.usfirst.frc.team3200.robot.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -16,60 +13,57 @@ import org.usfirst.frc.team3200.robot.subsystems.*;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	public static OI oi;
+	RobotDrive myRobot;
+	Joystick stick;
+	int autoLoopCounter;
 	
-	public static DriveTrain drive = new DriveTrain();
-	public static Pneumatics pistons = new Pneumatics();
-
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
-		oi = new OI();
-		
-//        teleopCommand = new DriveControlled();
-        
+    	myRobot = new RobotDrive(0,1);
+    	stick = new Joystick(0);
     }
-	
-	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
-	}
-
+    
+    /**
+     * This function is run once each time the robot enters autonomous mode
+     */
     public void autonomousInit() {
-        // schedule the autonomous command (example)
+    	autoLoopCounter = 0;
     }
 
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-        Scheduler.getInstance().run();
+    	if(autoLoopCounter < 100) //Check if we've completed 100 loops (approximately 2 seconds)
+		{
+			myRobot.drive(-0.5, 0.0); 	// drive forwards half speed
+			autoLoopCounter++;
+			} else {
+			myRobot.drive(0.0, 0.0); 	// stop robot
+		}
     }
-
-    public void teleopInit() {
-//        if (teleopCommand != null) teleopCommand.start();
-    }
-
+    
     /**
-     * This function is called when the disabled button is hit.
-     * You can use it to reset subsystems before shutting down.
+     * This function is called once each time the robot enters tele-operated mode
      */
-    public void disabledInit(){
-        
+    public void teleopInit(){
     }
 
     /**
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        Scheduler.getInstance().run();
+        myRobot.arcadeDrive(stick);
     }
     
     /**
      * This function is called periodically during test mode
      */
     public void testPeriodic() {
-        LiveWindow.run();
+    	LiveWindow.run();
     }
+    
 }
