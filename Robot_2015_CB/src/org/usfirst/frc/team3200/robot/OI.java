@@ -14,10 +14,19 @@ public class OI {
     public Joystick controller = new Joystick(RobotMap.XBOX1);
     public Button buttonA = new JoystickButton(controller, RobotMap.BUTTON_A);
     public Button buttonB = new JoystickButton(controller, RobotMap.BUTTON_B);
+    public Button buttonX = new JoystickButton(controller, RobotMap.BUTTON_X);
+    public Button buttonY = new JoystickButton(controller, RobotMap.BUTTON_Y);
+    public Button bumperR = new JoystickButton(controller, RobotMap.RIGHT_BUMPER);
+    public Button bumperL = new JoystickButton(controller, RobotMap.LEFT_BUMPER);
     
     public OI() {
         buttonA.whenPressed(new OpenClaw());
         buttonB.whenPressed(new CloseClaw());
+        buttonX.whenPressed(new LowerClaw());
+        buttonY.whenPressed(new RaiseClaw());
+        bumperR.whenPressed(new RaiseDump());
+        bumperL.whenPressed(new LowerDump());
+        
     }
     
     //// CREATING BUTTONS

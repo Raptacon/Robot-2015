@@ -22,16 +22,16 @@ public class RobotMap {
 	
 	
 	//Controller Buttons
-	public static final int BUTTON_A = 0;
-	public static final int BUTTON_B = 1;
-	public static final int BUTTON_X = 2;
-	public static final int BUTTON_Y = 3;
-	public static final int RIGHT_BUMPER = 4;
-	public static final int LEFT_BUMPER = 5;
-	public static final int BUTTON_SELECT = 6;
-	public static final int BUTTON_START = 7;
-	public static final int BUTTON_LEFT_JOYSTICK = 8;
-	public static final int BUTTON_RIGHT_JOYSTICK = 9;
+	public static final int BUTTON_A = 1;
+	public static final int BUTTON_B = 2;
+	public static final int BUTTON_X = 3;
+	public static final int BUTTON_Y = 4;
+	public static final int RIGHT_BUMPER = 5;
+	public static final int LEFT_BUMPER = 6;
+	public static final int BUTTON_SELECT = 7;
+	public static final int BUTTON_START = 8;
+	public static final int BUTTON_LEFT_JOYSTICK = 9;
+	public static final int BUTTON_RIGHT_JOYSTICK = 10;
 	
 	//Encoders
 	public static final int FL_ENCODER_A = 0;
@@ -42,4 +42,10 @@ public class RobotMap {
 	public static final int FR_ENCODER_B = 5;
 	public static final int BR_ENCODER_A = 6;
 	public static final int BR_ENCODER_B = 7;
+	
+	//Solenoids
+	public static final int CLAW_SOLE_OPEN = 0;
+	public static final int CLAW_SOLE_CLOSE = 1;
+	public static final int CLAW_SOLE_LIFT = 2;
+	public static final int DUMP_SOLE_LIFT = 3;
 }

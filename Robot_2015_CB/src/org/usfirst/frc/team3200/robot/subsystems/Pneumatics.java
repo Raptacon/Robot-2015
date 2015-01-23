@@ -15,8 +15,8 @@ public class Pneumatics extends Subsystem {
     
     public Pneumatics(){
         claw = new DoubleSolenoid(0, 1);
-        clawLifter = new Solenoid(0); //TODO: Edit channel number
-        dumpLifter = new Solenoid(0); //TODO: Edit channel number
+        clawLifter = new Solenoid(2);
+        dumpLifter = new Solenoid(3);
     }
     
     public void openClaw(){
@@ -26,10 +26,10 @@ public class Pneumatics extends Subsystem {
         claw.set(DoubleSolenoid.Value.kForward);
     }
     public void raiseDump(){
-        dumpLifter.set(true);
+        dumpLifter.set(false);
     }
     public void lowerDump(){
-        dumpLifter.set(false);
+        dumpLifter.set(true);
     }
     public void raiseClaw(){
         clawLifter.set(true);
