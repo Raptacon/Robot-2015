@@ -1,5 +1,8 @@
 package org.usfirst.frc.team3200.robot;
-
+/*
+ * This is a "Map" for all the RoboRio ports, Controller buttons,
+ * and other pieces of hardware
+ */
 public class RobotMap {
 	
 	// Talons

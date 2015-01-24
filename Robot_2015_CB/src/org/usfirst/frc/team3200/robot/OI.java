@@ -12,8 +12,10 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OI {
 	
+	//create a joystick to control the robot
     public Joystick controller = new Joystick(RobotMap.XBOX1);
     
+    //create buttons on the joystick
     public Button buttonA = new JoystickButton(controller, RobotMap.BUTTON_A);
     public Button buttonB = new JoystickButton(controller, RobotMap.BUTTON_B);
     public Button buttonX = new JoystickButton(controller, RobotMap.BUTTON_X);
@@ -22,6 +24,8 @@ public class OI {
     public Button bumperL = new JoystickButton(controller, RobotMap.LEFT_BUMPER);
     
     public OI() {
+    	
+    	//assign each button to a command
         buttonA.whenPressed(new OpenClaw());
         buttonB.whenPressed(new CloseClaw());
         buttonX.whenPressed(new LowerClaw());
@@ -31,6 +35,7 @@ public class OI {
         
     }
     
+    //gets the controller; used to get joystick values
     public Joystick getController() {
         return controller;
     }
