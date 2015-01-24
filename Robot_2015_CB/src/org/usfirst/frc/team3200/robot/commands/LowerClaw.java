@@ -10,22 +10,22 @@ import edu.wpi.first.wpilibj.command.Command;
 public class LowerClaw extends Command {
     
     public LowerClaw() {
+    	super("LowerClaw");
         requires(Robot.pistons);
-        setTimeout(1.5);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        Robot.pistons.lowerClaw();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.pistons.lowerClaw();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut();
+        return true;
     }
 
     // Called once after isFinished returns true
