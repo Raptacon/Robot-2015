@@ -5,14 +5,17 @@ import org.usfirst.frc.team3200.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveForward extends Command {
+	//motor speed (-1.0 to 1.0)
+	double speed;
+	
 	//number of meters to drive
 	double goal;
 	
-    public DriveForward(double goal) {
+    public DriveForward(double speed, double goal) {
     	super("DriveTo");
         requires(Robot.drive);
-        setTimeout(5);
         this.goal = goal;
+        this.speed = speed;
     }
 
     // Called just before this Command runs the first time
@@ -23,13 +26,13 @@ public class DriveForward extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//drive forward at full speed
-    	Robot.drive.mecanumDrive(0, 1, 0);
+    	//drive forward at specified speed
+    	Robot.drive.mecanumDrive(0, (float)speed, 0);
     }
 
     //finishes when time is up or the correct distance has been reached
     protected boolean isFinished() {
-        return (Robot.drive.getDistance() >= goal || isTimedOut());
+        return (Robot.drive.getDistance() >= goal);
     }
 
     // Called once after isFinished returns true

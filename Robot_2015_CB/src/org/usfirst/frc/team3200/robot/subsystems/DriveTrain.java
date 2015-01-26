@@ -23,7 +23,7 @@ public class DriveTrain extends Subsystem {
     private Encoder rearLeft;
     
     //average number of meters per encoder pulse
-    double distPerPulse = 0.0002553;
+    double distPerPulse = 0.001056942;
     
     public DriveTrain() {
     	//Initialize motors and invert left side motors
@@ -37,8 +37,8 @@ public class DriveTrain extends Subsystem {
         rearRight = new Encoder(RobotMap.BR_ENCODER_A, RobotMap.BR_ENCODER_B);
         frontLeft = new Encoder(RobotMap.FL_ENCODER_A, RobotMap.FL_ENCODER_B);
         rearLeft = new Encoder(RobotMap.BL_ENCODER_A, RobotMap.BL_ENCODER_B);
-        frontRight.setDistancePerPulse(distPerPulse);
-        rearRight.setDistancePerPulse(distPerPulse);
+        frontRight.setDistancePerPulse(-distPerPulse);
+        rearRight.setDistancePerPulse(-distPerPulse);
         frontLeft.setDistancePerPulse(distPerPulse);
         rearLeft.setDistancePerPulse(distPerPulse);
     }

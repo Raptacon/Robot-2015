@@ -1,10 +1,13 @@
 package org.usfirst.frc.team3200.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team3200.robot.commands.TestAuto;
+import org.usfirst.frc.team3200.robot.commands.*;
 import org.usfirst.frc.team3200.robot.subsystems.*;
 
 /**
@@ -18,11 +21,20 @@ public class Robot extends IterativeRobot {
 	
 	public static OI oi;
 	
+	CommandGroup autoMode;
+	SendableChooser autoChooser;
+	
 	public static DriveTrain drive = new DriveTrain();
 	public static Pneumatics pistons = new Pneumatics();
 
     public void robotInit() {
 		oi = new OI();
+		
+		autoChooser = new SendableChooser();
+		autoChooser.addDefault("Test", new TestAuto());
+		autoChooser.addObject("Drive Forward", new DriveForwardAuto());
+		
+		SmartDashboard.putData("Auto Mode", autoChooser);
     }
 	
 	public void disabledPeriodic() {
@@ -30,7 +42,8 @@ public class Robot extends IterativeRobot {
 	}
 
     public void autonomousInit() {
-        new TestAuto().start();
+        autoMode = (CommandGroup) autoChooser.getSelected();
+        autoMode.start();
     }
 
     public void autonomousPeriodic() {
