@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3200.robot.subsystems;
 
+import org.usfirst.frc.team3200.robot.Robot;
 import org.usfirst.frc.team3200.robot.RobotMap;
 import org.usfirst.frc.team3200.robot.commands.DriveControlled;
 
@@ -57,9 +58,9 @@ public class DriveTrain extends Subsystem {
     //sets the direction and the rotation of the drive train using values from a controller
     public void mecanumDrive(Joystick controller) {
         double x =  controller.getRawAxis(RobotMap.LEFT_STICK_X);
-        double y =   -controller.getRawAxis(RobotMap.LEFT_STICK_Y);
+        double y =  controller.getRawAxis(RobotMap.LEFT_STICK_Y);
         double rot = -controller.getRawAxis(RobotMap.RIGHT_STICK_X);
-        drive.mecanumDrive_Cartesian(x, y, rot , 0);
+        drive.mecanumDrive_Cartesian(x, y, rot , Robot.sensors.getGyroAngle());
     }
     
     //stops all motors

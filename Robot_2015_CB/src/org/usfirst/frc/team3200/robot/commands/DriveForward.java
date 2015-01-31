@@ -16,6 +16,7 @@ public class DriveForward extends Command {
         requires(Robot.drive);
         this.goal = goal;
         this.speed = speed;
+        setTimeout(1);
     }
 
     // Called just before this Command runs the first time
@@ -32,7 +33,7 @@ public class DriveForward extends Command {
 
     //finishes when time is up or the correct distance has been reached
     protected boolean isFinished() {
-        return (Robot.drive.getDistance() >= goal);
+        return (Robot.drive.getDistance() >= goal || isTimedOut());
     }
 
     // Called once after isFinished returns true

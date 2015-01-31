@@ -26,8 +26,8 @@ public class OI {
     public OI() {
     	
     	//assign each button to a command
-    	buttonA.whenPressed(new OpenClaw());
-    	buttonB.whenPressed(new CloseClaw());
+    	buttonA.whenPressed(new DriveForward(1, 10));
+    	buttonB.whenPressed(new DriveForward(-1, 10));
         
     }
     

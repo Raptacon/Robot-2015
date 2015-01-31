@@ -33,6 +33,7 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain drive = new DriveTrain();
 	public static Pneumatics pistons = new Pneumatics();
 	public static Elevator elevator = new Elevator();
+	public static Sensors sensors = new Sensors();
 	
     public void robotInit() {
 		oi = new OI();
@@ -65,7 +66,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-    	
+    	sensors.resetGyro();
     }
 
     public void disabledInit(){
@@ -74,6 +75,8 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        System.out.println(sensors.getGyroAngle() + " Degree");
+        System.out.println(sensors.getAnglePerSecond() + " Degree per second");
     }
     
     public void testPeriodic() {
