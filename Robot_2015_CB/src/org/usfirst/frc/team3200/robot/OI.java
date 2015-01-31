@@ -26,12 +26,8 @@ public class OI {
     public OI() {
     	
     	//assign each button to a command
-        buttonA.whenPressed(new OpenClaw());
-        buttonB.whenPressed(new CloseClaw());
-        buttonX.whenPressed(new LowerClaw());
-        buttonY.whenPressed(new RaiseClaw());
-        bumperR.whenPressed(new RaiseDump());
-        bumperL.whenPressed(new LowerDump());
+    	buttonA.whenPressed(new OpenClaw());
+    	buttonB.whenPressed(new CloseClaw());
         
     }
     

@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3200.misc;
 
-import edu.wpi.first.wpilibj.DigitalModule;
 import edu.wpi.first.wpilibj.I2C;
 
 public class LiDAR extends I2C{
@@ -12,8 +11,8 @@ public final int READHIGHLOW = 0x8f;
 byte[] distanceArray = new byte[2];
 byte nackack;
 
-	public LiDAR(DigitalModule module, int deviceAddress) {
-		super(module, deviceAddress);
+	public LiDAR(int deviceAddress) {
+		super(Port.kMXP, deviceAddress);
 	}
 	
 	public double getDistance() throws InterruptedException

@@ -26,6 +26,7 @@ public class DriveTrain extends Subsystem {
     double distPerPulse = 0.001056942;
     
     public DriveTrain() {
+    	super("DriveTrain");
     	//Initialize motors and invert left side motors
         drive = new RobotDrive(RobotMap.FRONT_LEFT, RobotMap.BACK_LEFT, 
                                RobotMap.FRONT_RIGHT, RobotMap.BACK_RIGHT);

@@ -9,25 +9,26 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Pneumatics extends Subsystem {
     //declare solenoids (controls sets of pistons)
-    private DoubleSolenoid claw;
+    private Solenoid claw;
     private Solenoid clawLifter;
     private Solenoid dumpLifter;
     
     public Pneumatics(){
+    	super("Pneumatics");
     	//initialize solenoids with specified PCM ports
-        claw = new DoubleSolenoid(0, 1);
-        clawLifter = new Solenoid(2);
-        dumpLifter = new Solenoid(3);
+        claw = new Solenoid(2);
     }
     
     //set both pistons to retracted state: \_/
     public void openClaw(){
-        claw.set(DoubleSolenoid.Value.kReverse);
+    	System.out.println("Opening");
+        claw.set(true);
     }
     
     //set both pistons to extended state: /_\
     public void closeClaw(){
-        claw.set(DoubleSolenoid.Value.kForward);
+    	System.out.println("Closing");
+        claw.set(false);
     }
     
     //extend dump pistons
