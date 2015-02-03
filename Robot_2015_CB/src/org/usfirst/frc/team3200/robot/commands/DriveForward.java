@@ -16,7 +16,7 @@ public class DriveForward extends Command {
         requires(Robot.drive);
         this.goal = goal;
         this.speed = speed;
-        setTimeout(1);
+        setTimeout(0.5);
     }
 
     // Called just before this Command runs the first time

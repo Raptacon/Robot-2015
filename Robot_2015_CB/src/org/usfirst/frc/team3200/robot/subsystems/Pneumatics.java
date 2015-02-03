@@ -16,7 +16,7 @@ public class Pneumatics extends Subsystem {
     public Pneumatics(){
     	super("Pneumatics");
     	//initialize solenoids with specified PCM ports
-        //claw = new Solenoid(2);
+        claw = new Solenoid(2);
     }
     
     //set both pistons to retracted state: \_/
@@ -29,6 +29,11 @@ public class Pneumatics extends Subsystem {
     public void closeClaw(){
     	System.out.println("Closing");
         claw.set(true);
+    }    
+    
+    public boolean isClawOpen(){
+    /* Returns whether or not the claw is open. */
+    	return !claw.get();
     }
     
     //extend dump pistons

@@ -75,8 +75,6 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        System.out.println(sensors.getGyroAngle() + " Degree");
-        System.out.println(sensors.getAnglePerSecond() + " Degree per second");
     }
     
     public void testPeriodic() {

@@ -58,9 +58,14 @@ public class DriveTrain extends Subsystem {
     //sets the direction and the rotation of the drive train using values from a controller
     public void mecanumDrive(Joystick controller) {
         double x =  controller.getRawAxis(RobotMap.LEFT_STICK_X);
-        double y =  controller.getRawAxis(RobotMap.LEFT_STICK_Y);
+        double y =  -controller.getRawAxis(RobotMap.LEFT_STICK_Y);
         double rot = -controller.getRawAxis(RobotMap.RIGHT_STICK_X);
-        drive.mecanumDrive_Cartesian(x, y, rot , Robot.sensors.getGyroAngle());
+        drive.mecanumDrive_Cartesian(x, y, rot , 0); //drive.mecanumDrive_Cartesian(x, y, rot , Robot.sensors.getGyroAngle());
+        System.out.print(frontLeft.getRate() + "    ");
+        System.out.println(frontRight.getRate());
+        System.out.print(rearLeft.getRate() + "    ");
+        System.out.println(rearRight.getRate());
+        System.out.println();
     }
     
     //stops all motors

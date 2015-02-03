@@ -26,8 +26,13 @@ public class OI {
     public OI() {
     	
     	//assign each button to a command
-    	buttonA.whenPressed(new DriveForward(1, 10));
-    	buttonB.whenPressed(new DriveForward(-1, 10));
+//    	buttonA.whenPressed(new DriveForward(-3, 10)); //Forward
+//    	buttonB.whenPressed(new DriveForward(3, 10));  //Backward
+    	
+    	buttonA.whenPressed(new ToggleClaw()); // When the A button is pressed on the XBox, toggle the claw.
+//        buttonX.whenPressed(new OpenClaw());
+//        buttonY.whenPressed(new CloseClaw());
+     
         
     }
     
