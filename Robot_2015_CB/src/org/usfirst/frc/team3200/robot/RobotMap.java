@@ -51,4 +51,11 @@ public class RobotMap {
 	public static final int CLAW_SOLE_CLOSE = 1;
 	public static final int CLAW_SOLE_LIFT = 2;
 	public static final int DUMP_SOLE_LIFT = 3;
+	
+	//Elevator
+	public static final int ELEVATOR_WINCH = 10; // CAN Port for the winch.
+	public static final int ELEVATOR_UPPER_LIMIT = 9; // Digital IO slot for the upper limit switch.
+	public static final int ELEVATOR_LOWER_LIMIT = 8; // Digital IO slot for the lower limit switch.
+	
+	
 }

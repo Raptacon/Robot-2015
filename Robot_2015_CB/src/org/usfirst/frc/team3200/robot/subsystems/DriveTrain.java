@@ -61,11 +61,11 @@ public class DriveTrain extends Subsystem {
         double y =  -controller.getRawAxis(RobotMap.LEFT_STICK_Y);
         double rot = -controller.getRawAxis(RobotMap.RIGHT_STICK_X);
         drive.mecanumDrive_Cartesian(x, y, rot , 0); //drive.mecanumDrive_Cartesian(x, y, rot , Robot.sensors.getGyroAngle());
-        System.out.print(frontLeft.getRate() + "    ");
-        System.out.println(frontRight.getRate());
-        System.out.print(rearLeft.getRate() + "    ");
-        System.out.println(rearRight.getRate());
-        System.out.println();
+//        System.out.print(frontLeft.getRate() + "    ");
+//        System.out.println(frontRight.getRate());
+//        System.out.print(rearLeft.getRate() + "    ");
+//        System.out.println(rearRight.getRate());
+//        System.out.println();
     }
     
     //stops all motors
