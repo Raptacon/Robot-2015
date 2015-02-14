@@ -16,7 +16,7 @@ public class Pneumatics extends Subsystem {
     public Pneumatics(){
     	super("Pneumatics");
     	//initialize solenoids with specified PCM ports
-        claw = new Solenoid(2);
+        claw = new Solenoid(0);
     }
     
     //set both pistons to retracted state: \_/

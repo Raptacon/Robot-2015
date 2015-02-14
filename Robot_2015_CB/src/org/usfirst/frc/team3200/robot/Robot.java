@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3200.robot;
 
-import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -8,7 +7,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team3200.robot.commands.*;
 import org.usfirst.frc.team3200.robot.commands.autonomous.*;
 import org.usfirst.frc.team3200.robot.subsystems.*;
 
@@ -74,6 +72,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopPeriodic() {
+
         Scheduler.getInstance().run();
     }
     

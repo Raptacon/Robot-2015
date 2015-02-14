@@ -13,11 +13,19 @@ public class ToggleClaw extends Command {
     public ToggleClaw() {
     	super("CloseClaw");
         requires(Robot.pistons);
+     //   requires(Robot.sensors);
     }
 
  // Called just before this Command runs the first time
     protected void initialize() {
-        if (Robot.pistons.isClawOpen()) Robot.pistons.closeClaw(); // If the claw is open, close it.
+//        try {
+//			System.out.print("LiDAR ");
+//			System.out.println(Robot.sensors.getDistanceLIDAR());
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+    	if (Robot.pistons.isClawOpen()) Robot.pistons.closeClaw(); // If the claw is open, close it.
         else Robot.pistons.openClaw(); // Otherwise open it.
     }
 
