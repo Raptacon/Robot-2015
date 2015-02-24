@@ -1,12 +1,12 @@
 package org.usfirst.frc.team3200.robot.subsystems;
 
-import parts.LiDAR;
+//import parts.LiDAR;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Sensors extends Subsystem{
 	
-	LiDAR lD = new LiDAR(0x62);
+	//LiDAR lD = new LiDAR(0x62);
 	Gyro gyro = new Gyro(0);
 	
 	private double rotation;
@@ -27,9 +27,9 @@ public class Sensors extends Subsystem{
 		gyro.setSensitivity(V_PER_DEG_S);
 		
 	}
-	public double getDistanceLIDAR() throws InterruptedException{
-		return lD.getDistance();
-	}
+//	public double getDistanceLIDAR() throws InterruptedException{
+//		return lD.getDistance();
+//	}
 	
 	public void resetGyro(){
 		gyro.reset();

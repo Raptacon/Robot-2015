@@ -21,11 +21,16 @@ public class Robot extends IterativeRobot {
 	//Declare the OI for use by the Scheduler
 	public static OI oi;
 	
+	//the robot being driven
+	public static int robotType;
+	
+	private SendableChooser robotChooser;
+	
 	//Declare a CommandGroup for selecting which autonomous to run
-	CommandGroup autoMode;
+	private CommandGroup autoMode;
 	
 	//Declare a selector to be put on the SmartDashboard
-	SendableChooser autoChooser;
+	private SendableChooser autoChooser;
 	
 	//Create the subsystems for use by the robot
 	public static DriveTrain drive = new DriveTrain();
@@ -36,43 +41,48 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
 		
+		//create the robotChooser and add constants as choices
+		robotChooser = new SendableChooser();
+		robotChooser.addDefault("Practice Robot", RobotMap.TEST_BOT);
+		robotChooser.addObject("Competition Robot", RobotMap.COMP_BOT);
+		
+		//put the robotChooser on the SmartDashboard
+		SmartDashboard.putData("Robot Type", robotChooser);
+		
 		//Create the autoChooser and add CommandGroups as choices
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("Test", new TestAuto());
 		autoChooser.addObject("Drive Forward", new DriveForwardAuto());
+		autoChooser.addObject("Drive and Grab", new DriveGrabAuto());
 		
 		//put the autoChooser on the SmartDashboard
 		SmartDashboard.putData("Auto Mode", autoChooser);
     }
 	
 	public void disabledPeriodic() {
+		robotType = (int) robotChooser.getSelected();
 		Scheduler.getInstance().run();
 	}
 
     public void autonomousInit() {
     	//run the CommandGroup that was selected in the SmartDashboard
-//    	TODO: UNCOMMENT
-//        autoMode = (CommandGroup) autoChooser.getSelected();
-//        autoMode.start();
-    	System.out.println("blah2");
+        autoMode = (CommandGroup) autoChooser.getSelected();
+    	autoMode.start();
     }
 
     public void autonomousPeriodic() {
-//    	TODO: UNCOMMENT
-//        Scheduler.getInstance().run();
-        System.out.println("blah.");
+        Scheduler.getInstance().run();
     }
 
     public void teleopInit() {
-    	sensors.resetGyro();
+    	elevator.resetEncoder();
+    	//sensors.resetGyro();
     }
 
     public void disabledInit(){
-        
     }
 
     public void teleopPeriodic() {
-
         Scheduler.getInstance().run();
     }
     

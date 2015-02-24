@@ -4,14 +4,17 @@ package org.usfirst.frc.team3200.robot;
  * and other pieces of hardware
  */
 public class RobotMap {
+	//Robot being driven
+	public static final int TEST_BOT = 0;
+	public static final int COMP_BOT = 0;
 	
-	// Talons
+	//Talons
 	public static final int FRONT_LEFT = 0;
 	public static final int BACK_LEFT = 1;
 	public static final int FRONT_RIGHT = 3;
 	public static final int BACK_RIGHT = 2;
 	
-	// Controllers
+	//Controllers
 	public static final int XBOX1 = 0;
 	public static final int XBOX2 = 1;
 	
@@ -45,6 +48,8 @@ public class RobotMap {
 	public static final int FR_ENCODER_B = 5;
 	public static final int BR_ENCODER_A = 6;
 	public static final int BR_ENCODER_B = 7;
+	public static final int ELEVATOR_ENCODER_A = 8;
+	public static final int ELEVATOR_ENCODER_B = 9;
 	
 	//Solenoids
 	public static final int CLAW_SOLE_OPEN = 0;

@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3200.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
+
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -22,18 +22,18 @@ public class Pneumatics extends Subsystem {
     //set both pistons to retracted state: \_/
     public void openClaw(){
     	System.out.println("Opening");
-        claw.set(false);
+        claw.set(true);
     }
     
     //set both pistons to extended state: /_\
     public void closeClaw(){
     	System.out.println("Closing");
-        claw.set(true);
+        claw.set(false);
     }    
     
     public boolean isClawOpen(){
     /* Returns whether or not the claw is open. */
-    	return !claw.get();
+    	return claw.get();
     }
     
     //extend dump pistons

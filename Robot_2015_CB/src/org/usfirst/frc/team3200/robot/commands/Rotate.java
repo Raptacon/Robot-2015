@@ -4,36 +4,36 @@ import org.usfirst.frc.team3200.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveForward extends Command {
-	//motor speed (-1.0 to 1.0)
-	double speed;
-	
-	//number of meters to drive
-	double goal;
-	
-    public DriveForward(double speed, double goal) {
-    	super("DriveTo");
+/**
+ *
+ */
+public class Rotate extends Command {
+	private double speed;
+	private double goal;
+	private double gyroStart;
+
+    public Rotate(double speed, double goal) {
+    	super("Rotate");
         requires(Robot.drive);
-        this.goal = goal;
+        requires(Robot.sensors);
         this.speed = speed;
-        setTimeout(0.5);
+        this.goal = goal;
+        setTimeout(5);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	//reset encoders to begin distance measurement from 0
-    	Robot.drive.resetEncoders();
+    	gyroStart = Robot.sensors.getGyroAngle();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//drive forward at specified speed
-    	Robot.drive.mecanumDrive(0, (float)speed, 0);
+    	Robot.drive.mecanumDrive(0, 0, (float)speed);
     }
 
-    //finishes when time is up or the correct distance has been reached
+    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Robot.drive.getDistance() >= goal || isTimedOut());
+        return ((Robot.sensors.getGyroAngle() - gyroStart) >= goal || isTimedOut());
     }
 
     // Called once after isFinished returns true

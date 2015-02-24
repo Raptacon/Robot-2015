@@ -4,7 +4,7 @@ import org.usfirst.frc.team3200.robot.Robot;
 import org.usfirst.frc.team3200.robot.RobotMap;
 import org.usfirst.frc.team3200.robot.commands.DriveControlled;
 
-import parts.LinearLimitSC;
+//import parts.LinearLimitSC;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
@@ -27,15 +27,25 @@ public class DriveTrain extends Subsystem {
     private Encoder rearLeft;
     
     //max speed in m/s
-    double MAX_SPEED = 2;
+    final double MAX_SPEED = 2;
     
-    double BACK_WHEEL_MULT = 0.5;
+    final double BACK_WHEEL_MULT = 0.5;
     
     //average number of meters per encoder pulse
-    final double DIST_PER_PULSE = 0.001056942;
+    final double DIST_PER_PULSE_TEST = 0.001056942;
+    final double DIST_PER_PULSE_COMP = 0.001680538;
+    
+    double distPerPulse;
     
     public DriveTrain() {
     	super("DriveTrain");
+    	
+    	//set the distance per pulse depending on the robot selected
+    	if(Robot.robotType == RobotMap.TEST_BOT) {
+    		distPerPulse = DIST_PER_PULSE_TEST;
+    	} else {
+    		distPerPulse = DIST_PER_PULSE_COMP;
+    	}
     	
     	//Initialize motors and invert left side motors
         drive = new RobotDrive(
@@ -58,10 +68,10 @@ public class DriveTrain extends Subsystem {
         rearRight = new Encoder(RobotMap.BR_ENCODER_A, RobotMap.BR_ENCODER_B);
         frontLeft = new Encoder(RobotMap.FL_ENCODER_A, RobotMap.FL_ENCODER_B);
         rearLeft = new Encoder(RobotMap.BL_ENCODER_A, RobotMap.BL_ENCODER_B);
-        frontRight.setDistancePerPulse(-DIST_PER_PULSE);
-        rearRight.setDistancePerPulse(-DIST_PER_PULSE);
-        frontLeft.setDistancePerPulse(DIST_PER_PULSE);
-        rearLeft.setDistancePerPulse(DIST_PER_PULSE);
+        frontRight.setDistancePerPulse(-distPerPulse);
+        rearRight.setDistancePerPulse(-distPerPulse);
+        frontLeft.setDistancePerPulse(distPerPulse);
+        rearLeft.setDistancePerPulse(distPerPulse);
     }
     
     //sets DriveControlled as the default command for this subsystem
@@ -71,25 +81,29 @@ public class DriveTrain extends Subsystem {
     
     //sets the direction and the rotation of the drive train
     public void mecanumDrive(float x, float y, float rot) {
-    	drive.mecanumDrive_Cartesian(x, -y, -rot, 0);
+    	drive.mecanumDrive_Cartesian(x, y, -rot, 0);
     }
 
     //sets the direction and the rotation of the drive train using values from a controller
     public void mecanumDrive(Joystick controller) {
-        double x =  -(controller.getRawAxis(RobotMap.LEFT_STICK_X) * 0.6);
-        double y =  -(controller.getRawAxis(RobotMap.LEFT_STICK_Y) * 0.6);
-        double rot = -(controller.getRawAxis(RobotMap.RIGHT_STICK_X) * 0.6);
-        x = mapDeadZone(x);
-        y = mapDeadZone(y);
-        rot = mapDeadZone(rot);
-        drive.mecanumDrive_Cartesian(x, y, rot , 0);
-//        System.out.print(frontLeft.getRate());
-//        System.out.println(frontRight.getRate());
-//        System.out.print(rearLeft.getRate());
-//        System.out.println(rearRight.getRate());
-//        System.out.println();
-        //drive.mecanumDrive_Cartesian(x, y, rot , Robot.sensors.getGyroAngle());
-        //System.out.println(Robot.sensors.getGyroAngle());
+        double x =  (controller.getRawAxis(RobotMap.LEFT_STICK_X));
+        double y =  (controller.getRawAxis(RobotMap.LEFT_STICK_Y));
+        double rot = (controller.getRawAxis(RobotMap.RIGHT_STICK_X));
+        
+        x *= Math.abs(x);
+        y *= Math.abs(y);
+        rot *= Math.abs(rot);
+//        x = mapDeadZone(x);
+//        y = mapDeadZone(y);
+//        rot = mapDeadZone(rot);
+//        
+//        if(Robot.oi.buttonR.get()) {
+//        	x *= 0.5;
+//        	y *= 0.5;
+//        	rot *= 0.5;
+//        }
+
+        drive.mecanumDrive_Cartesian(-x, -y, -rot , 0);
     }
     
     public double mapDeadZone(double n) {

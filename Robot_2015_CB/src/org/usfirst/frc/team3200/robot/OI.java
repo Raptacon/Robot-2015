@@ -13,32 +13,27 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 	
 	//create a joystick to control the robot
-    public Joystick controller = new Joystick(RobotMap.XBOX1);
-    
-    //create buttons on the joystick
-    public Button buttonA = new JoystickButton(controller, RobotMap.BUTTON_A);
-    public Button buttonB = new JoystickButton(controller, RobotMap.BUTTON_B);
-    public Button buttonX = new JoystickButton(controller, RobotMap.BUTTON_X);
-    public Button buttonY = new JoystickButton(controller, RobotMap.BUTTON_Y);
-    public Button bumperR = new JoystickButton(controller, RobotMap.RIGHT_BUMPER);
-    public Button bumperL = new JoystickButton(controller, RobotMap.LEFT_BUMPER);
-    
-    public OI() {
-    	
-    	//assign each button to a command
-//    	buttonA.whenPressed(new DriveForward(-1, 10));
-//    	buttonB.whenPressed(new DriveForward(1, 10));
-    	
-    	buttonA.whenPressed(new ToggleClaw()); // When the A button is pressed on the XBox, toggle the claw.
-//        buttonX.whenPressed(new OpenClaw());
-//        buttonY.whenPressed(new CloseClaw());
-     
-        
+	private Joystick controller1 = new Joystick(RobotMap.XBOX1);
+	private Joystick controller2 = new Joystick(RobotMap.XBOX2); 
+	
+	//create buttons on the joystick
+	private JoystickButton buttonA = new JoystickButton(controller1, RobotMap.BUTTON_A);
+	public JoystickButton buttonR = new JoystickButton(controller1, RobotMap.RIGHT_BUMPER);
+	public JoystickButton buttonY = new JoystickButton(controller1, RobotMap.BUTTON_Y);
+	
+	
+	public OI() {
+		//assign buttons to commands
+		buttonA.whenPressed(new ToggleClaw()); // When the A button is pressed on the XBox1, toggle the claw
+    }
+
+    //gets the controller; used to get joystick values
+    public Joystick getController1() {
+        return controller1;
     }
     
-    //gets the controller; used to get joystick values
-    public Joystick getController() {
-        return controller;
+    public Joystick getController2() {
+    	return controller2;
     }
 }
 

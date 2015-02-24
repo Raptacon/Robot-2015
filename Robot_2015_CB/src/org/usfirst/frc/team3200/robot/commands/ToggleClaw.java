@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class ToggleClaw extends Command {
 	
     public ToggleClaw() {
-    	super("CloseClaw");
+    	super("ToggleClaw");
         requires(Robot.pistons);
      //   requires(Robot.sensors);
     }
