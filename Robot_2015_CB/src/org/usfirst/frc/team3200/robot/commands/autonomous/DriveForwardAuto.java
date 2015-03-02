@@ -8,6 +8,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class DriveForwardAuto extends CommandGroup {
     
     public  DriveForwardAuto() {
-    	addSequential(new DriveStraight(0.25, 1));
+    	addSequential(new DriveStraight(1, .25));
     }
 }

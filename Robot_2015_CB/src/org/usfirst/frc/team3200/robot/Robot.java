@@ -66,17 +66,17 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
     	//run the CommandGroup that was selected in the SmartDashboard
-        autoMode = (CommandGroup) autoChooser.getSelected();
+    	autoMode = (CommandGroup) autoChooser.getSelected();
     	autoMode.start();
     }
 
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        
     }
 
     public void teleopInit() {
-    	elevator.resetEncoder();
-    	//sensors.resetGyro();
+    	sensors.resetGyro();
     }
 
     public void disabledInit(){

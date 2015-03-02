@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Sensors extends Subsystem{
 	
 	//LiDAR lD = new LiDAR(0x62);
-	Gyro gyro = new Gyro(0);
+	Gyro gyro = new Gyro(1);
 	
 	private double rotation;
 	
 	//volts per degree per second
-	private static double V_PER_DEG_S = .007;
+	private static double V_PER_DEG_S = .0035;
 	
 	//10 ms per tick of the system
 	private static double SYS_TICK = .01; //s

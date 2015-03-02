@@ -7,49 +7,47 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Rotate extends Command {
-	private double speed;
-	private double goal;
-	private double gyroStart;
-	
+public class MoveElevatorBy extends Command {
+	double speed;
+	double goal;
+	double startHeight;
 	int direction;
 
-    public Rotate(double goal, double speed) {
-    	super("Rotate");
-        requires(Robot.drive);
-        requires(Robot.sensors);
+    public MoveElevatorBy(double goal, double speed) {
+    	super("MoveElevatorBy");
+        requires(Robot.elevator);
+        this.speed = speed;
         this.goal = goal;
-        this.speed = speed * Math.signum(goal);
         setTimeout(5);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	gyroStart = Robot.sensors.getGyroAngle();
+    	startHeight = Robot.elevator.getHeight();
     	direction = (int)Math.signum(goal);
     	speed *= direction;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drive.mecanumDrive(0, 0, (float)speed);
+    	Robot.elevator.moveElevator(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return(direction ==  1 && Robot.sensors.getGyroAngle() >= gyroStart + goal) ||
-  	          (direction == -1 && Robot.sensors.getGyroAngle() <= gyroStart + goal) || 
-  	          (isTimedOut());
+        return(direction ==  1 && Robot.elevator.getHeight() >= startHeight + goal) ||
+        	  (direction == -1 && Robot.elevator.getHeight() <= startHeight + goal) || 
+        	  (isTimedOut());
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.drive.stop();
+    	Robot.elevator.moveElevator(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
+    	Robot.elevator.moveElevator(0);
     }
 }
