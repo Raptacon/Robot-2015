@@ -1,18 +1,21 @@
 package org.usfirst.frc.team3200.robot.commands;
 
-import org.usfirst.frc.team3200.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveStraight extends Command {
+import org.usfirst.frc.team3200.robot.Robot;
+
+/**
+ *
+ */
+public class DriveStrafe extends Command {
 	//motor speed (-1.0 to 1.0)
 	double speed;
 	
 	//number of meters to drive
 	double goal;
 	
-    public DriveStraight(double goal, double speed) {
-    	super("DriveForward");
+    public DriveStrafe(double goal, double speed) {
+    	super("DriveStrafe");
         requires(Robot.drive);
         this.goal = goal;
         this.speed = speed * Math.signum(goal);
@@ -28,12 +31,12 @@ public class DriveStraight extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//drive forward at specified speed
-    	Robot.drive.mecanumDrive(0, (float)speed, 0);
+    	Robot.drive.mecanumDrive((float)speed, 0, 0);
     }
 
     //finishes when time is up or the correct distance has been reached
     protected boolean isFinished() {
-        return (Math.abs(Robot.drive.getYDistance()) >= Math.abs(goal) || isTimedOut());
+        return (Math.abs(Robot.drive.getXDistance()) >= Math.abs(goal) || isTimedOut());
     }
 
     // Called once after isFinished returns true

@@ -18,7 +18,7 @@ public class Elevator extends Subsystem {
 	private double ELEVATOR_SPEED = 1;
 	
 	//number of encoder pulses per full elevator height
-	private final double HEIGHT_PER_PULSE_TEST = 0.000532765;
+	private final double HEIGHT_PER_PULSE_TEST = 0.000532765 * 1.35; //m
 	private final double HEIGHT_PER_PULSE_COMP = 0.000532765; //TODO change to actual distance
 	
 	private Encoder elevatorEncoder;

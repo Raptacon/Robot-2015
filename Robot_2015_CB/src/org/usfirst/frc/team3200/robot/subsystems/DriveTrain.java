@@ -32,7 +32,7 @@ public class DriveTrain extends Subsystem {
     final double BACK_WHEEL_MULT = 0.5;
     
     //average number of meters per encoder pulse
-    final double DIST_PER_PULSE_TEST = 0.001056942;
+    final double DIST_PER_PULSE_TEST = 0.001056942 * 1.05;
     final double DIST_PER_PULSE_COMP = 0.001680538;
     
     double distPerPulse;
@@ -128,8 +128,15 @@ public class DriveTrain extends Subsystem {
     }
     
     //gets the average distance recorded by the encoders
-    public double getDistance() {
+    public double getYDistance() {
     	return (frontRight.getDistance() + rearRight.getDistance() +
     			frontLeft.getDistance() + rearLeft.getDistance()) / 4;
+    }
+    
+    public double getXDistance() {
+    	System.out.println(frontLeft.getDistance() + "\t" + frontRight.getDistance() + "\n" +
+		           rearLeft.getDistance() + "\t" + rearRight.getDistance() + "\n");
+    	return(frontLeft.getDistance() + frontRight.getDistance() -
+    		   rearLeft.getDistance() - rearRight.getDistance()) / 4 * 0.85;
     }
 }
