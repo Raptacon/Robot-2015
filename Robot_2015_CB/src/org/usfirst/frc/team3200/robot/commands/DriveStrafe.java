@@ -1,12 +1,8 @@
 package org.usfirst.frc.team3200.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-
 import org.usfirst.frc.team3200.robot.Robot;
 
-/**
- *
- */
 public class DriveStrafe extends Command {
 	//motor speed (-1.0 to 1.0)
 	double speed;
@@ -19,7 +15,7 @@ public class DriveStrafe extends Command {
         requires(Robot.drive);
         this.goal = goal;
         this.speed = speed * Math.signum(goal);
-        setTimeout(5);
+        setTimeout(10);
     }
 
     // Called just before this Command runs the first time

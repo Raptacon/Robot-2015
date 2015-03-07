@@ -15,8 +15,10 @@ public class DriveStraight extends Command {
     	super("DriveForward");
         requires(Robot.drive);
         this.goal = goal;
+        
+        //speed is given the sign of the goal
         this.speed = speed * Math.signum(goal);
-        setTimeout(5);
+        setTimeout(10);
     }
 
     // Called just before this Command runs the first time
@@ -33,6 +35,7 @@ public class DriveStraight extends Command {
 
     //finishes when time is up or the correct distance has been reached
     protected boolean isFinished() {
+    	//returns true if robot is at or past the goal
         return (Math.abs(Robot.drive.getYDistance()) >= Math.abs(goal) || isTimedOut());
     }
 

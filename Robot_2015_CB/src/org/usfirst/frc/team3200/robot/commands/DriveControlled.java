@@ -3,10 +3,6 @@ package org.usfirst.frc.team3200.robot.commands;
 import org.usfirst.frc.team3200.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
-
-/**
- *
- */
 public class DriveControlled extends Command {
 
     public DriveControlled() {

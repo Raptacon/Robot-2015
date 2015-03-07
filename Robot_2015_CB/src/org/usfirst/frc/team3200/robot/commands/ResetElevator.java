@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class ResetElevator extends Command{
 
+	//time that it should take to move all the way to the bottom
 	public static double LOWER_DURATION = 1.2; //s
 	
 	public ResetElevator(){
@@ -20,6 +21,7 @@ public class ResetElevator extends Command{
 
 	@Override
 	protected void execute() {
+		//move the elevator at the specified speed
 		Robot.elevator.moveElevator(-.5);
 	}
 

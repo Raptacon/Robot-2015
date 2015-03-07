@@ -3,7 +3,6 @@ package org.usfirst.frc.team3200.robot.commands;
 import org.usfirst.frc.team3200.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
@@ -12,21 +11,16 @@ public class ToggleClaw extends Command {
 	
     public ToggleClaw() {
     	super("ToggleClaw");
-        requires(Robot.pistons);
-     //   requires(Robot.sensors);
+        requires(Robot.claw);
     }
 
  // Called just before this Command runs the first time
     protected void initialize() {
-//        try {
-//			System.out.print("LiDAR ");
-//			System.out.println(Robot.sensors.getDistanceLIDAR());
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-    	if (Robot.pistons.isClawOpen()) Robot.pistons.closeClaw(); // If the claw is open, close it.
-        else Robot.pistons.openClaw(); // Otherwise open it.
+    	if (Robot.claw.isClawOpen()) {
+    		Robot.claw.closeClaw(); // If the claw is open, close it.
+    	} else {
+    		Robot.claw.openClaw(); // Otherwise open it.
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run

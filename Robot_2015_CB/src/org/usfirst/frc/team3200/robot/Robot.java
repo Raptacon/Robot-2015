@@ -24,17 +24,18 @@ public class Robot extends IterativeRobot {
 	//the robot being driven
 	public static int robotType;
 	
+	//Declare a SmartDashboard selector to specify which robot is being driven
 	private SendableChooser robotChooser;
 	
-	//Declare a CommandGroup for selecting which autonomous to run
+	//Declare a CommandGroup to contain the autonomous being run
 	private CommandGroup autoMode;
 	
-	//Declare a selector to be put on the SmartDashboard
+	//Declare a SmartDashboard selector to choose which autonomous to run
 	private SendableChooser autoChooser;
 	
 	//Create the subsystems for use by the robot
 	public static DriveTrain drive = new DriveTrain();
-	public static Pneumatics pistons = new Pneumatics();
+	public static Claw claw = new Claw();
 	public static Elevator elevator = new Elevator();
 	public static Sensors sensors = new Sensors();
 	
@@ -59,12 +60,15 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto Mode", autoChooser);
     }
 	
+    public void disabledInit(){
+    }
+    
 	public void disabledPeriodic() {
-		robotType = (int) robotChooser.getSelected();
 		Scheduler.getInstance().run();
 	}
 
     public void autonomousInit() {
+    	robotType = (int) robotChooser.getSelected();
     	//run the CommandGroup that was selected in the SmartDashboard
     	autoMode = (CommandGroup) autoChooser.getSelected();
     	autoMode.start();
@@ -76,10 +80,8 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
+    	robotType = (int) robotChooser.getSelected();
     	sensors.resetGyro();
-    }
-
-    public void disabledInit(){
     }
 
     public void teleopPeriodic() {

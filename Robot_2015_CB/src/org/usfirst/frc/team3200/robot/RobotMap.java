@@ -6,13 +6,13 @@ package org.usfirst.frc.team3200.robot;
 public class RobotMap {
 	//Robot being driven
 	public static final int TEST_BOT = 0;
-	public static final int COMP_BOT = 0;
+	public static final int COMP_BOT = 1;
 	
 	//Talons
 	public static final int FRONT_LEFT = 0;
 	public static final int BACK_LEFT = 1;
-	public static final int FRONT_RIGHT = 3;
 	public static final int BACK_RIGHT = 2;
+	public static final int FRONT_RIGHT = 3;
 	
 	//Controllers
 	public static final int XBOX1 = 0;
@@ -25,7 +25,6 @@ public class RobotMap {
 	public static final int RIGHT_TRIGGER = 3;
 	public static final int RIGHT_STICK_X = 4;
 	public static final int RIGHT_STICK_Y = 5;
-	
 	
 	//Controller Buttons
 	public static final int BUTTON_A = 1;
@@ -52,16 +51,11 @@ public class RobotMap {
 	public static final int ELEVATOR_ENCODER_B = 9;
 	
 	//Solenoids
-	public static final int CLAW_SOLE_OPEN = 0;
-	public static final int CLAW_SOLE_CLOSE = 1;
-	public static final int CLAW_SOLE_LIFT = 2;
-	public static final int DUMP_SOLE_LIFT = 3;
+	public static final int CLAW_SOLE = 0;
 	
-	//Elevator
-	public static final int ELEVATOR_WINCH_1 = 10; // CAN Port for the 1st winch.
-	public static final int ELEVATOR_WINCH_2 = 11; // CAN Port for the 2nd winch.
-	public static final int ELEVATOR_UPPER_LIMIT = 9; // Digital IO slot for the upper limit switch.
-	public static final int ELEVATOR_LOWER_LIMIT = 8; // Digital IO slot for the lower limit switch.
+	//Elevator winches
+	public static final int ELEVATOR_WINCH_1 = 10;
+	public static final int ELEVATOR_WINCH_2 = 11;
 	
 	
 }

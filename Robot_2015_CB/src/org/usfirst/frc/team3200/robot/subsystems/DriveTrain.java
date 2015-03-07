@@ -5,7 +5,6 @@ import org.usfirst.frc.team3200.robot.RobotMap;
 import org.usfirst.frc.team3200.robot.commands.DriveControlled;
 
 //import parts.LinearLimitSC;
-import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -26,13 +25,8 @@ public class DriveTrain extends Subsystem {
     private Encoder frontLeft;
     private Encoder rearLeft;
     
-    //max speed in m/s
-    final double MAX_SPEED = 2;
-    
-    final double BACK_WHEEL_MULT = 0.5;
-    
     //average number of meters per encoder pulse
-    final double DIST_PER_PULSE_TEST = 0.001056942 * 1.05;
+    final double DIST_PER_PULSE_TEST = 0.001109789;
     final double DIST_PER_PULSE_COMP = 0.001680538;
     
     double distPerPulse;
@@ -93,10 +87,7 @@ public class DriveTrain extends Subsystem {
         x *= Math.abs(x);
         y *= Math.abs(y);
         rot *= Math.abs(rot);
-//        x = mapDeadZone(x);
-//        y = mapDeadZone(y);
-//        rot = mapDeadZone(rot);
-//        
+        
 //        if(Robot.oi.buttonR.get()) {
 //        	x *= 0.5;
 //        	y *= 0.5;
@@ -127,15 +118,14 @@ public class DriveTrain extends Subsystem {
     	rearLeft.reset();
     }
     
-    //gets the average distance recorded by the encoders
+    //gets the average distance recorded by the encoders (forward and backwards)
     public double getYDistance() {
     	return (frontRight.getDistance() + rearRight.getDistance() +
     			frontLeft.getDistance() + rearLeft.getDistance()) / 4;
     }
     
+    //gets the average distance recorded by the encoders (left and right)
     public double getXDistance() {
-    	System.out.println(frontLeft.getDistance() + "\t" + frontRight.getDistance() + "\n" +
-		           rearLeft.getDistance() + "\t" + rearRight.getDistance() + "\n");
     	return(frontLeft.getDistance() + frontRight.getDistance() -
     		   rearLeft.getDistance() - rearRight.getDistance()) / 4 * 0.85;
     }
