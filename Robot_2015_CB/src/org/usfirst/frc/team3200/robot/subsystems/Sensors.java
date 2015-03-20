@@ -12,7 +12,7 @@ public class Sensors extends Subsystem{
 	private double rotation;
 	
 	//volts per degree per second
-	private static double V_PER_DEG_S = .0035;
+	private static double V_PER_DEG_S = .0035/1.2;
 	
 	//10 ms per tick of the system
 	private static double SYS_TICK = .01; //s
@@ -27,9 +27,6 @@ public class Sensors extends Subsystem{
 		gyro.setSensitivity(V_PER_DEG_S);
 		
 	}
-//	public double getDistanceLIDAR() throws InterruptedException{
-//		return lD.getDistance();
-//	}
 	
 	public void resetGyro(){
 		gyro.reset();

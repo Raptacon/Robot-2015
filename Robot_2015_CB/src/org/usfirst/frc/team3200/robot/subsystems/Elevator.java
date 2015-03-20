@@ -21,23 +21,18 @@ public class Elevator extends Subsystem {
 	private Encoder elevatorEncoder;
 	
 	//number of encoder pulses per full elevator height
-	private final double HEIGHT_PER_PULSE_TEST = 0.0071923; //m
-	private final double HEIGHT_PER_PULSE_COMP = 0.0071923; //TODO change to actual value
+	private final double HEIGHT_PER_PULSE_TEST = 0.00071923; //m
+	private final double HEIGHT_PER_PULSE_COMP = 0.00071923; //TODO change to actual value
 	
 	//variable to be set to value based on robot being driven
 	private double heightPerPulse;
 	
+	private int robotType;
+	
 	public Elevator() {
 		super("Elevator");
 		
-		//set height per pulse based on robot being driven
-		if(Robot.robotType == RobotMap.TEST_BOT) {
-			heightPerPulse = HEIGHT_PER_PULSE_TEST;
-		} else {
-			heightPerPulse = HEIGHT_PER_PULSE_COMP;
-		}
-		
-		//
+		//create elevator motor controllers at specified ports
 		winch1 = new CANTalon(RobotMap.ELEVATOR_WINCH_1);
 		winch2 = new CANTalon(RobotMap.ELEVATOR_WINCH_2);
 
@@ -47,13 +42,18 @@ public class Elevator extends Subsystem {
 	}
     
 	public void moveElevator(double speed) {
-    	winch1.set(-speed);
-    	winch2.set(-speed);
+    	if(robotType == RobotMap.TEST_BOT) {
+    		winch1.set(-speed);
+    		winch2.set(-speed);
+    	} else {
+    		winch1.set(-speed);
+    		winch2.set(-speed);
+    	}
 	}
 	
     public void moveElevator(Joystick controller) {
-    	double upVal = controller.getRawAxis(RobotMap.RIGHT_TRIGGER);
-    	double downVal = -controller.getRawAxis(RobotMap.LEFT_TRIGGER);
+    	double upVal = -controller.getRawAxis(RobotMap.RIGHT_TRIGGER);
+    	double downVal = controller.getRawAxis(RobotMap.LEFT_TRIGGER);
     	
     	double speed = upVal + downVal;
     	
@@ -64,7 +64,7 @@ public class Elevator extends Subsystem {
     		speed *= 0.5;
     	}
     	
-    	moveElevator(speed);
+    	moveElevator(-speed);
     }
     
     public void resetEncoder() {
@@ -75,6 +75,18 @@ public class Elevator extends Subsystem {
     	return elevatorEncoder.getDistance();
     }
 
+    public void setRobotType(int type) {
+		//set height per pulse based on robot being driven
+    	robotType = Robot.robotType;
+		if(robotType == RobotMap.TEST_BOT) {
+			heightPerPulse = HEIGHT_PER_PULSE_TEST;
+		} else {
+			heightPerPulse = HEIGHT_PER_PULSE_COMP;
+		}
+		
+		elevatorEncoder.setDistancePerPulse(heightPerPulse);
+    }
+    
     public void initDefaultCommand() {
     	setDefaultCommand(new MoveElevatorControlled());
     }

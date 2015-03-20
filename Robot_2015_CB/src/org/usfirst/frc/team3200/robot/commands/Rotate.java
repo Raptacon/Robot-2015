@@ -4,13 +4,15 @@ import org.usfirst.frc.team3200.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
+
 public class Rotate extends Command {
+	private final double DEG_PER_SEC = 132;
+	private double degPerSec;
+	
 	private double speed;
 	private double goal;
 	private double gyroStart;
+	private double startTime;
 	
 	int direction;
 
@@ -19,15 +21,16 @@ public class Rotate extends Command {
         requires(Robot.drive);
         requires(Robot.sensors);
         this.goal = goal;
-        this.speed = speed * Math.signum(goal);
+        this.speed = speed;
+//        degPerSec = DEG_PER_SEC * speed;
+        direction = (int)Math.signum(goal);
+    	this.speed *= direction;
         setTimeout(5);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	gyroStart = Robot.sensors.getGyroAngle();
-    	direction = (int)Math.signum(goal);
-    	speed *= direction;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -37,9 +40,11 @@ public class Rotate extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return(direction ==  1 && Robot.sensors.getGyroAngle() >= gyroStart + goal) ||
-  	          (direction == -1 && Robot.sensors.getGyroAngle() <= gyroStart + goal) || 
-  	          (isTimedOut());
+//    	return(direction ==  1 && Robot.sensors.getGyroAngle() >= gyroStart + goal) ||
+//  	          (direction == -1 && Robot.sensors.getGyroAngle() <= gyroStart + goal) || 
+//  	          (isTimedOut());
+    	
+    	return (Math.abs(Robot.sensors.getGyroAngle() - gyroStart) >= Math.abs(goal) || isTimedOut());
     }
 
     // Called once after isFinished returns true

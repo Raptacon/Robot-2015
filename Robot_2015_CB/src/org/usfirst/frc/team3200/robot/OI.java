@@ -17,13 +17,16 @@ public class OI {
 	
 	//create buttons on the joystick
 	private JoystickButton buttonA = new JoystickButton(controller1, RobotMap.BUTTON_A);
-	public JoystickButton buttonR = new JoystickButton(controller1, RobotMap.RIGHT_BUMPER);
 	public JoystickButton buttonY = new JoystickButton(controller1, RobotMap.BUTTON_Y);
+	public JoystickButton bumperR = new JoystickButton(controller1, RobotMap.RIGHT_BUMPER);
+	public JoystickButton bumperL = new JoystickButton(controller1, RobotMap.LEFT_BUMPER);
 	
 	
 	public OI() {
 		//assign buttons to commands
 		buttonA.whenPressed(new ToggleClaw()); // When the A button is pressed on the XBox1, toggle the claw
+		bumperR.whenPressed(new MoveElevatorBy(-0.33, 0.75)); //Move the elevator up one tote
+		bumperL.whenPressed(new MoveElevatorBy(0.33, 0.75)); //Move the elevator down one tote
     }
 
     //gets the controller; used to get joystick values

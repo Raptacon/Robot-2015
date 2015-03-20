@@ -18,7 +18,7 @@ public class DriveStraight extends Command {
         
         //speed is given the sign of the goal
         this.speed = speed * Math.signum(goal);
-        setTimeout(10);
+        setTimeout(5);
     }
 
     // Called just before this Command runs the first time

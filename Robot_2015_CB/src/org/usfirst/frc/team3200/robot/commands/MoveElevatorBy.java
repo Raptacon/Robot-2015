@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class MoveElevatorBy extends Command {
 	//motor speed (-1.0 to 1.0)
-	double speed;
+	double velocity;
 	
 	//number of meters to move elevator
 	double goal;
@@ -23,7 +23,7 @@ public class MoveElevatorBy extends Command {
     public MoveElevatorBy(double goal, double speed) {
     	super("MoveElevatorBy");
         requires(Robot.elevator);
-        this.speed = speed;
+        this.velocity = speed*Math.signum(goal);
         this.goal = goal;
         setTimeout(5);
     }
@@ -31,24 +31,18 @@ public class MoveElevatorBy extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	startHeight = Robot.elevator.getHeight();
-    	
-    	//speed is given the sign of the goal
-    	direction = (int) Math.signum(goal);
-    	speed *= direction;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//move the elevator at the specified speed
-    	Robot.elevator.moveElevator(speed);
+    	Robot.elevator.moveElevator(velocity);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	//returns true if the elevator is at or past the goal
-        return(direction ==  1 && Robot.elevator.getHeight() >= startHeight + goal) ||
-        	  (direction == -1 && Robot.elevator.getHeight() <= startHeight + goal) || 
-        	  (isTimedOut());
+    	return (Math.abs(Robot.elevator.getHeight() - startHeight) >= Math.abs(goal) || isTimedOut());
     }
 
     // Called once after isFinished returns true

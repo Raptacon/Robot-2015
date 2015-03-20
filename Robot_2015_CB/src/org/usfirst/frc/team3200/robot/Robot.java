@@ -44,18 +44,21 @@ public class Robot extends IterativeRobot {
 		
 		//create the robotChooser and add constants as choices
 		robotChooser = new SendableChooser();
-		robotChooser.addDefault("Practice Robot", RobotMap.TEST_BOT);
-		robotChooser.addObject("Competition Robot", RobotMap.COMP_BOT);
+		robotChooser.addObject("Practice Robot", RobotMap.TEST_BOT);
+		robotChooser.addDefault("Competition Robot", RobotMap.COMP_BOT);
 		
 		//put the robotChooser on the SmartDashboard
 		SmartDashboard.putData("Robot Type", robotChooser);
 		
 		//Create the autoChooser and add CommandGroups as choices
 		autoChooser = new SendableChooser();
-		autoChooser.addDefault("Test", new TestAuto());
-		autoChooser.addObject("Drive Forward", new DriveForwardAuto());
-		autoChooser.addObject("Drive and Grab", new DriveGrabAuto());
-		
+		autoChooser.addObject("Test", new TestAuto());
+		autoChooser.addDefault("Drive Forward", new DriveForwardAuto());
+		autoChooser.addObject("Pull One Tote", new OneToteAuto());
+		autoChooser.addObject("Pull One Bin (quick)", new QuickBinAuto());
+		autoChooser.addObject("Pull One Bin and One Tote", new ToteBinAuto());
+		autoChooser.addObject("Strafe Autonomous", new StrafeAuto());
+		autoChooser.addObject("Stack Bin on Tote and Drag", new StackToteBinAutoOne());
 		//put the autoChooser on the SmartDashboard
 		SmartDashboard.putData("Auto Mode", autoChooser);
     }
@@ -69,6 +72,8 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
     	robotType = (int) robotChooser.getSelected();
+    	drive.setRobotType(robotType);
+    	elevator.setRobotType(robotType);
     	//run the CommandGroup that was selected in the SmartDashboard
     	autoMode = (CommandGroup) autoChooser.getSelected();
     	autoMode.start();
@@ -76,12 +81,13 @@ public class Robot extends IterativeRobot {
 
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
-        
     }
 
     public void teleopInit() {
-    	robotType = (int) robotChooser.getSelected();
     	sensors.resetGyro();
+    	robotType = (int) robotChooser.getSelected();
+    	drive.setRobotType(robotType);
+    	elevator.setRobotType(robotType);
     }
 
     public void teleopPeriodic() {
@@ -90,5 +96,11 @@ public class Robot extends IterativeRobot {
     
     public void testPeriodic() {
         LiveWindow.run();
+    }
+    
+    public void printAll() {
+    	drive.printAll();
+    	System.out.println("Elevator Height: " + elevator.getHeight());
+    	System.out.println();
     }
 }
