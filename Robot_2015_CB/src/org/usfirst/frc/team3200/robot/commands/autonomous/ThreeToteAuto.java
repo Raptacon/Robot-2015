@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3200.robot.commands.autonomous;
 
+import org.usfirst.frc.team3200.robot.commands.*;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -8,21 +10,61 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class ThreeToteAuto extends CommandGroup {
     
     public  ThreeToteAuto() {
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
-
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
+    	/*
+    	 * STARTING POSITION: (start with leftmost tote)
+    	 * 
+    	 *       --TOP--                --SIDE--
+    	 * 
+    	 *          +-----+                    +-+       
+    	 *          |     |                    | |       
+    	 *    /|\   |TOTE |                   || |       
+    	 *   // \\  |     |                   || |       
+    	 *  //   \\ +-----+           ________|| |
+    	 *  +-----+  .---.           |________|| |\  (bin behind)
+    	 *  |     | | BIN |      ============  | |\\
+    	 *  | BOT |  .___.       |          |  | | \\
+    	 *  |     |              |  TOTE    |  |_|__\\________
+    	 *  +-----+              |__________|  |_____BOT______|
+    	 */
+    	
+    	
+    	//CHANGE DISTANCES AND SPEEDS AS NEEDED. It is probably to slow to finish within 15 seconds right now
+    	
+    	//strafe into bin, prepare to grab first tote
+    	addSequential(new OpenClaw());
+        addSequential(new DriveStrafe(0.5, 0.5));
+        addSequential(new MoveElevatorBy(-0.2, 0.5));
+        addSequential(new CloseClaw());
+        addSequential(new Wait(1));
+        
+        //raise elevator and move to next tote
+        addSequential(new MoveElevatorBy(0.4, 0.5));
+        addSequential(new DriveStrafe(-0.5, 0.5));
+        addSequential(new DriveStraight(1.32, 0.5));
+        
+        //repeat strafing into bin and grabbing tote
+        addSequential(new DriveStrafe(0.5, 0.5));
+        addSequential(new OpenClaw());
+        addSequential(new Wait(1));
+        addSequential(new MoveElevatorBy(-0.34, 0.5));
+        addSequential(new CloseClaw());
+        addSequential(new Wait(1));
+        
+        //move to next tote
+        addSequential(new MoveElevatorBy(0.5, 0.5));
+        addSequential(new DriveStrafe(-0.5, 0.5));
+        addSequential(new DriveStraight(1.32, 0.5));
+        
+        //repeat
+        addSequential(new DriveStrafe(0.5, 0.5));
+        addSequential(new OpenClaw());
+        addSequential(new Wait(1));
+        addSequential(new MoveElevatorBy(-0.34, 0.5));
+        addSequential(new CloseClaw());
+        addSequential(new Wait(1));
+        
+        //raise elevator a little and move to auto zone
+        addSequential(new MoveElevatorBy(0.2, 0.5));
+        addSequential(new DriveStrafe(-3.2, 0.5));
     }
 }
