@@ -1,6 +1,11 @@
 package org.usfirst.frc.team3200.robot.commands.autonomous;
 
 import org.usfirst.frc.team3200.robot.commands.*;
+import org.usfirst.frc.team3200.robot.commands.Claw.CloseClaw;
+import org.usfirst.frc.team3200.robot.commands.Claw.OpenClaw;
+import org.usfirst.frc.team3200.robot.commands.DriveTrain.DriveStrafe;
+import org.usfirst.frc.team3200.robot.commands.DriveTrain.DriveStraight;
+import org.usfirst.frc.team3200.robot.commands.Elevator.MoveElevatorBy;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -10,25 +15,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class ThreeToteAuto extends CommandGroup {
     
     public  ThreeToteAuto() {
-    	/*
-    	 * STARTING POSITION: (start with leftmost tote)
-    	 * 
-    	 *       --TOP--                --SIDE--
-    	 * 
-    	 *          +-----+                    +-+       
-    	 *          |     |                    | |       
-    	 *    /|\   |TOTE |                   || |       
-    	 *   // \\  |     |                   || |       
-    	 *  //   \\ +-----+           ________|| |
-    	 *  +-----+  .---.           |________|| |\  (bin behind)
-    	 *  |     | | BIN |      ============  | |\\
-    	 *  | BOT |  .___.       |          |  | | \\
-    	 *  |     |              |  TOTE    |  |_|__\\________
-    	 *  +-----+              |__________|  |_____BOT______|
-    	 */
-    	
-    	
-    	//CHANGE DISTANCES AND SPEEDS AS NEEDED. It is probably to slow to finish within 15 seconds right now
     	
     	//strafe into bin, prepare to grab first tote
     	addSequential(new OpenClaw());

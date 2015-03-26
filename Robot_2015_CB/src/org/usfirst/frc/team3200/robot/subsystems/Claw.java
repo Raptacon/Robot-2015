@@ -21,13 +21,12 @@ public class Claw extends Subsystem {
     
     //set both pistons to retracted state: \_/
     public void openClaw(){
-    	System.out.println("Opening");
+
         claw.set(true);
     }
     
-    //set both pistons to extended state: |_|
+    //set both pistons to extended state: /_\
     public void closeClaw(){
-    	System.out.println("Closing");
         claw.set(false);
     }    
     

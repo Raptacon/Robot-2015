@@ -1,26 +1,21 @@
-package org.usfirst.frc.team3200.robot.commands;
+package org.usfirst.frc.team3200.robot.commands.Claw;
 
 import org.usfirst.frc.team3200.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ToggleClaw extends Command {
+public class OpenClaw extends Command {
 	
-    public ToggleClaw() {
-    	super("ToggleClaw");
+    public OpenClaw() {
+    	super("OpenClaw");
         requires(Robot.claw);
     }
 
  // Called just before this Command runs the first time
     protected void initialize() {
-    	if (Robot.claw.isClawOpen()) {
-    		Robot.claw.closeClaw(); // If the claw is open, close it.
-    	} else {
-    		Robot.claw.openClaw(); // Otherwise open it.
-    	}
+         Robot.claw.openClaw();
     }
 
     // Called repeatedly when this Command is scheduled to run

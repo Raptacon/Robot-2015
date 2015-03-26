@@ -52,6 +52,7 @@ public class RobotMap {
 	
 	//Solenoids
 	public static final int CLAW_SOLE = 0;
+	public static final int HOOK_SOLE = 1;
 	
 	//Elevator winches
 	public static final int ELEVATOR_WINCH_1 = 10;

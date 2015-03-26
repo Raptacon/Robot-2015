@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3200.robot.commands;
+package org.usfirst.frc.team3200.robot.commands.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team3200.robot.Robot;

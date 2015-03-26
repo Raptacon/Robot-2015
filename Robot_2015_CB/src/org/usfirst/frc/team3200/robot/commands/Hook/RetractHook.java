@@ -1,21 +1,22 @@
-package org.usfirst.frc.team3200.robot.commands;
+package org.usfirst.frc.team3200.robot.commands.Hook;
 
 import org.usfirst.frc.team3200.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class OpenClaw extends Command {
-	
-    public OpenClaw() {
-    	super("OpenClaw");
-        requires(Robot.claw);
+public class RetractHook extends Command {
+
+    public RetractHook() {
+    	super("RetractHook");
+        requires(Robot.hook);
     }
 
- // Called just before this Command runs the first time
+    // Called just before this Command runs the first time
     protected void initialize() {
-         Robot.claw.openClaw();
+    	Robot.hook.retractHook();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -35,5 +36,4 @@ public class OpenClaw extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     }
-
 }

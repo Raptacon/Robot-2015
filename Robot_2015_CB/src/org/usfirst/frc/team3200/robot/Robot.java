@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3200.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -30,6 +31,9 @@ public class Robot extends IterativeRobot {
 	//Declare a CommandGroup to contain the autonomous being run
 	private CommandGroup autoMode;
 	
+	//Camera Server to collect data from camera
+	CameraServer camserver;
+	
 	//Declare a SmartDashboard selector to choose which autonomous to run
 	private SendableChooser autoChooser;
 	
@@ -37,11 +41,22 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain drive = new DriveTrain();
 	public static Claw claw = new Claw();
 	public static Elevator elevator = new Elevator();
+	public static Hook hook = new Hook();
 	public static Sensors sensors = new Sensors();
 	
     public void robotInit() {
 		oi = new OI();
 		
+		//allows the SmartDashboard to stream the USB webcam
+		try {
+			camserver = CameraServer.getInstance(); //get server instance
+	        camserver.setQuality(50);
+	        //the camera name (ex "cam0") can be found through the roborio web interface
+	        camserver.startAutomaticCapture("cam1");
+		} catch (Exception e) {
+			
+		}
+        
 		//create the robotChooser and add constants as choices
 		robotChooser = new SendableChooser();
 		robotChooser.addObject("Practice Robot", RobotMap.TEST_BOT);
@@ -58,7 +73,7 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Pull One Bin (quick)", new QuickBinAuto());
 		autoChooser.addObject("Pull One Bin and One Tote", new ToteBinAuto());
 		autoChooser.addObject("Strafe Autonomous", new StrafeAuto());
-		autoChooser.addObject("Stack Bin on Tote and Drag", new StackToteBinAutoOne());
+		autoChooser.addObject("Stack Bin on Tote and Drag", new ToteBinStackAuto());
 		//put the autoChooser on the SmartDashboard
 		SmartDashboard.putData("Auto Mode", autoChooser);
     }

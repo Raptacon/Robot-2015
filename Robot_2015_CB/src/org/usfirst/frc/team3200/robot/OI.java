@@ -1,6 +1,9 @@
 package org.usfirst.frc.team3200.robot;
 
-import org.usfirst.frc.team3200.robot.commands.*;
+import org.usfirst.frc.team3200.robot.commands.Claw.ToggleClaw;
+import org.usfirst.frc.team3200.robot.commands.Elevator.MoveElevatorBy;
+import org.usfirst.frc.team3200.robot.commands.Hook.ToggleHook;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -17,7 +20,8 @@ public class OI {
 	
 	//create buttons on the joystick
 	private JoystickButton buttonA = new JoystickButton(controller1, RobotMap.BUTTON_A);
-	public JoystickButton buttonY = new JoystickButton(controller1, RobotMap.BUTTON_Y);
+	private JoystickButton buttonY = new JoystickButton(controller1, RobotMap.BUTTON_Y);
+	public JoystickButton buttonB = new JoystickButton(controller1, RobotMap.BUTTON_B);
 	public JoystickButton bumperR = new JoystickButton(controller1, RobotMap.RIGHT_BUMPER);
 	public JoystickButton bumperL = new JoystickButton(controller1, RobotMap.LEFT_BUMPER);
 	
@@ -25,6 +29,7 @@ public class OI {
 	public OI() {
 		//assign buttons to commands
 		buttonA.whenPressed(new ToggleClaw()); // When the A button is pressed on the XBox1, toggle the claw
+		buttonY.whenPressed(new ToggleHook()); //When the Y button is pressed, toggle the hook
 		bumperR.whenPressed(new MoveElevatorBy(-0.33, 0.75)); //Move the elevator up one tote
 		bumperL.whenPressed(new MoveElevatorBy(0.33, 0.75)); //Move the elevator down one tote
     }

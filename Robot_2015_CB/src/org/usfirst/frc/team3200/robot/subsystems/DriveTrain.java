@@ -2,7 +2,8 @@ package org.usfirst.frc.team3200.robot.subsystems;
 
 import org.usfirst.frc.team3200.robot.Robot;
 import org.usfirst.frc.team3200.robot.RobotMap;
-import org.usfirst.frc.team3200.robot.commands.DriveControlled;
+
+import org.usfirst.frc.team3200.robot.commands.DriveTrain.DriveControlled;
 
 //import parts.LinearLimitSC;
 import edu.wpi.first.wpilibj.Encoder;
@@ -88,11 +89,11 @@ public class DriveTrain extends Subsystem {
         y *= Math.abs(y);
         rot *= Math.abs(rot);
         
-//        if(Robot.oi.buttonR.get()) {
-//        	x *= 0.5;
-//        	y *= 0.5;
-//        	rot *= 0.5;
-//        }
+        if(Robot.oi.buttonB.get()) {
+        	x *= 0.5;
+        	y *= 0.5;
+        	rot *= 0.5;
+        }
         
         if(robotType == RobotMap.TEST_BOT) {
         	drive.mecanumDrive_Cartesian(-x, -y, -rot , 0);

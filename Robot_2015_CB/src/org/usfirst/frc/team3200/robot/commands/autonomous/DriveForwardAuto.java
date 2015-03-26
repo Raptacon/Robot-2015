@@ -1,6 +1,8 @@
 package org.usfirst.frc.team3200.robot.commands.autonomous;
 
 import org.usfirst.frc.team3200.robot.commands.*;
+import org.usfirst.frc.team3200.robot.commands.DriveTrain.DriveStraight;
+import org.usfirst.frc.team3200.robot.commands.DriveTrain.Rotate;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 

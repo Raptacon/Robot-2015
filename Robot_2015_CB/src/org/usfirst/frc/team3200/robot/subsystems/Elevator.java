@@ -2,7 +2,7 @@ package org.usfirst.frc.team3200.robot.subsystems;
 
 import org.usfirst.frc.team3200.robot.Robot;
 import org.usfirst.frc.team3200.robot.RobotMap;
-import org.usfirst.frc.team3200.robot.commands.MoveElevatorControlled;
+import org.usfirst.frc.team3200.robot.commands.Elevator.MoveElevatorControlled;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
@@ -60,9 +60,9 @@ public class Elevator extends Subsystem {
     	//makes speed change exponentially
     	speed *= Math.abs(speed);
     	
-    	if(Robot.oi.buttonY.get()) {
-    		speed *= 0.5;
-    	}
+//    	if(Robot.oi.buttonY.get()) {
+//    		speed *= 0.5;
+//    	}
     	
     	moveElevator(-speed);
     }
