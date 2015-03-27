@@ -23,7 +23,8 @@ public class MoveElevatorBy extends Command {
     public MoveElevatorBy(double goal, double speed) {
     	super("MoveElevatorBy");
         requires(Robot.elevator);
-        this.velocity = speed*Math.signum(goal);
+        direction = (int)Math.signum(goal);
+        this.velocity = speed*direction;
         this.goal = goal;
         setTimeout(5);
     }
@@ -41,6 +42,11 @@ public class MoveElevatorBy extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	//returns true if limit switches are triggered
+    	if((direction == 1 && Robot.elevator.getUpperLimit()) || (direction == -1 && Robot.elevator.getLowerLimit())) {
+    		return true;
+    	}
+    	
     	//returns true if the elevator is at or past the goal
     	return (Math.abs(Robot.elevator.getHeight() - startHeight) >= Math.abs(goal) || isTimedOut());
     }

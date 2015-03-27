@@ -50,15 +50,17 @@ public class ToteBinStackAuto extends CommandGroup{
 		addSequential(new CloseClaw());
 		addSequential(new Wait(1));
 		addSequential(new MoveElevatorBy(0.4, 0.5));
-		addSequential(new DriveStrafe(-0.9, 0.5));
+		addSequential(new DriveStrafe(-0.75, 0.5));
 		addSequential(new MoveElevatorBy(-0.1, 0.5));
 		addSequential(new OpenClaw());
+		addSequential(new Wait(1));
 		addSequential(new DriveStraight(-0.7, 0.5));
 		addSequential(new CloseClaw());
-		addSequential(new MoveElevatorBy(-1, 0.5));
+		addSequential(new Wait(1));
+		addSequential(new MoveElevatorBy(-0.6, 0.5));
 		addSequential(new DriveStraight(0.1, 0.5));
 		addSequential(new MoveElevatorBy(0.1, 0.5));
-		addSequential(new DriveStraight(-2.5, 0.5));
+		addSequential(new DriveStraight(-3, 0.25));
 		
 	}
 }

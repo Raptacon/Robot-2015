@@ -74,6 +74,14 @@ public class Elevator extends Subsystem {
     public double getHeight() {
     	return elevatorEncoder.getDistance();
     }
+    
+    public boolean getUpperLimit() {
+    	return winch1.isRevLimitSwitchClosed();
+    }
+    
+    public boolean getLowerLimit() {
+    	return winch1.isFwdLimitSwitchClosed();
+    }
 
     public void setRobotType(int type) {
 		//set height per pulse based on robot being driven

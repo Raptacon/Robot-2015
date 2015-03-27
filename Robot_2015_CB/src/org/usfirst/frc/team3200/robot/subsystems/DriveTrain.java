@@ -58,6 +58,8 @@ public class DriveTrain extends Subsystem {
         drive.setInvertedMotor(MotorType.kFrontLeft, true);
         drive.setInvertedMotor(MotorType.kRearLeft, true);
         
+        drive.setSafetyEnabled(false);
+        
         //initialize encoders and set pulse distance
         frontRight = new Encoder(RobotMap.FR_ENCODER_A, RobotMap.FR_ENCODER_B);
         rearRight = new Encoder(RobotMap.BR_ENCODER_A, RobotMap.BR_ENCODER_B);
